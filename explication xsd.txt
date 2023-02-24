@@ -1,0 +1,4 @@
+Dans ce schéma, nous avons défini un élément racine restaurantCatalogue avec une séquence d'éléments plat qui peut se répéter plusieurs fois (avec l'attribut maxOccurs="unbounded"). 
+Chaque élément plat contient les éléments nom, description, prix, categorie et ingredients, avec leurs types de données respectifs. 
+L'élément ingredients est défini comme une séquence d'éléments ingredient, qui peut également se répéter plusieurs fois. 
+L'élément plat a également un attribut id de type positiveInteger qui est requis.
