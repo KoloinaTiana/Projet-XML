@@ -14,24 +14,7 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xpath xs">
     <html>
         <head>
             <title>Menu du restaurant</title>
-            <style>
-          table {
-            font-family: arial, sans-serif;
-            border-collapse: collapse;
-            width: 100%;
-          }
-          
-          td, th {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-          }
-          
-          th {
-            background-color: #EF6AA2;
-            color: white;
-          }
-        </style>
+             <link rel="stylesheet" type="text/css" href="restaurantmenu.css"/>
         </head>
         <body>
             <h1>Menu du restaurant</h1>
@@ -52,29 +35,8 @@ xmlns:xs="http://www.w3.org/2001/XMLSchema" exclude-result-prefixes="xpath xs">
                     <th>Ingredients</th>
                     <th>Prix</th>
                 </tr>
-                <!-- Filtrer les éléments plat en fonction des paramètres de recherche -->
-                <xsl:variable name="filtered-plats">
-                    <xsl:choose>
-                        <!-- Si les deux paramètres de recherche sont vides, sélectionner tous les éléments plat -->
-                        <xsl:when test="not($search-xpath) and not($search-xquery)">
-                            <xsl:copy-of select="//restaurant:plat"/>
-                        </xsl:when>
-                        <!-- Si seulement le paramètre de recherche XPath est présent, sélectionner les éléments plat qui correspondent à l'expression XPath -->
-                        <xsl:when test="$search-xpath">
-                            <xsl:copy-of select="//restaurant:plat[$search-xpath]"/>
-                        </xsl:when>
-                        <!-- Si seulement le paramètre de recherche XQuery est présent, sélectionner les éléments plat qui correspondent à l'expression XQuery -->
-                        <xsl:when test="$search-xquery">
-                            <xsl:copy-of select="//restaurant:plat[xpath:evaluate($search-xquery)]"/>
-                        </xsl:when>
-                        <!-- Si les deux paramètres de recherche sont présents, sélectionner les éléments plat qui correspondent à l'expression XPath et à l'expression XQuery -->
-                        <xsl:otherwise>
-                          <xsl:copy-of select="//restaurant:plat[$search-xpath][xpath:evaluate($search-xquery)]"/>
-                        </xsl:otherwise>
-                    </xsl:choose>
-                </xsl:variable>
                 <!-- Parcourir les éléments plat filtrés et les afficher dans le tableau -->
-                <xsl:apply-templates select="$filtered-plats/restaurant:plat"/> 
+                <xsl:apply-templates /> 
             </table>
         </body>
     </html>
